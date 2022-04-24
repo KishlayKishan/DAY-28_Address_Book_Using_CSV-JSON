@@ -133,6 +133,13 @@ public class AddressBookSystem {
 				addressBook.readDataFromCSVFile();
 				break;
 			case 13:
+				addressBook.addContact(addressBookName);
+				System.out.println("Contact added to JSON File");
+				break;
+			case 14:
+				addressBook.readDataFromJSONFile();
+				break;
+			case 15:
 				obj.addAddressBook();
 				count = 0;
 				break;

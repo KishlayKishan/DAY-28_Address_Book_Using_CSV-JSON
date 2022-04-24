@@ -1,7 +1,9 @@
 package com.addressbook;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,11 +11,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -274,6 +278,37 @@ public class AddressBook {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void addDataToJSONFile(String addressBookName) throws IOException {
+		System.out.println("Enter name for json written file : ");
+		String fileName = sc.nextLine();
+		Path filePath = Paths.get("E:\\shamal\\bl\\AdvanceAddressBook" + fileName + ".json");
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		FileWriter writer = new FileWriter(String.valueOf(filePath));
+		writer.write(json);
+		writer.close();
+	}
+
+	public void readDataFromJSONFile() throws FileNotFoundException {
+		System.out.println("Enter address book name : ");
+		String fileName = sc.nextLine();
+		Path filePath = Paths.get("C:\\\\Users\\\\HP\\\\Downloads" + fileName + ".json");
+		Gson gson = new Gson();
+		BufferedReader br = new BufferedReader(new FileReader(String.valueOf(filePath)));
+		Person[] data = gson.fromJson(br, Person[].class);
+		List<Person> list = Arrays.asList(data);
+		for (Person details : list) {
+			System.out.println("Firstname : " + details.firstName);
+			System.out.println("Lastname : " + details.lastName);
+			System.out.println("Address : " + details.address);
+			System.out.println("City : " + details.city);
+			System.out.println("State : " + details.state);
+			System.out.println("Zip : " + details.zip);
+			System.out.println("PhoneNumber : " + details.phno);
+			System.out.println("Email : " + details.emailId);
 		}
 	}
 }
