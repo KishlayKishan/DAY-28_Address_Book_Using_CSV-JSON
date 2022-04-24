@@ -1,9 +1,7 @@
 package com.addressbook;
 
 public class AddressBookException extends Exception {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	enum ExceptionType {

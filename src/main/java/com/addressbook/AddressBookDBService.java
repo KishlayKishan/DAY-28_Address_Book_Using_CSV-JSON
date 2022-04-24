@@ -1,5 +1,7 @@
 package com.addressbook;
 
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -145,7 +147,7 @@ public class AddressBookDBService {
 				firstName, lastName, address, city, state, zip, phno, emailId);
 		try (Connection connection = this.getConnection()) {
 			Statement statement = connection.createStatement();
-			int rowAffected = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			int rowAffected = statement.executeUpdate(query, RETURN_GENERATED_KEYS);
 			if (rowAffected == 1) {
 				ResultSet resultSet = statement.getGeneratedKeys();
 				if (resultSet.next())

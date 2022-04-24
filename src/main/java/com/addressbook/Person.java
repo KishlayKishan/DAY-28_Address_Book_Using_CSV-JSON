@@ -22,10 +22,6 @@ public class Person {
 		this.emailId = emailId;
 	}
 
-	public Person() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
